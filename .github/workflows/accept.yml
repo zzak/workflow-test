@@ -17,6 +17,8 @@ on:
 jobs:
   accepted:
     runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
     steps:
     - run: |
         echo "ref: ${{ github.event.inputs.ref }}"
