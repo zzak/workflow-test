@@ -25,6 +25,9 @@ jobs:
         echo "ref_name: ${{ github.event.inputs.ref_name }}"
         echo "ref_type: ${{ github.event.inputs.ref_type }}"
 
+    - name: checkout
+      uses: actions/checkout@v3
+
     - name: clone
       run: |
         gh repo clone zzak/workflow-test-upstream -- --depth 1 --branch ${{ github.event.inputs.ref_name }}
@@ -34,8 +37,6 @@ jobs:
       run: |
         git remote show origin
 
-    - name: checkout
-      uses: actions/checkout@v3
     - name: publish
       run: |
         ls workflow-test-upstream
