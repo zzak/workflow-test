@@ -22,3 +22,12 @@ jobs:
         echo "ref: ${{ github.event.inputs.ref }}"
         echo "ref_name: ${{ github.event.inputs.ref_name }}"
         echo "ref_type: ${{ github.event.inputs.ref_type }}"
+
+    - name: clone
+      run: |
+        gh repo clone zzak/workflow-test-upstream -- --depth 1 --branch ${{ github.event.inputs.ref_name }}
+
+    - name: report
+      working-directory: workflow-test-upstream
+      run: |
+        git status
