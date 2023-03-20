@@ -1,0 +1,24 @@
+on:
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: Equal to github.ref property
+        required: true
+        default: refs/head/main
+      ref_name:
+        description: Equal to github.ref_name property
+        required: true
+        default: main
+      ref_type:
+        description: Equal to github.ref_type property
+        required: true
+        default: branch
+
+jobs:
+  accepted:
+    runs-on: ubuntu-latest
+    steps:
+    - run: |
+        echo "ref: ${{ github.event.inputs.ref }}"
+        echo "ref_name: ${{ github.event.inputs.ref_name }}"
+        echo "ref_type: ${{ github.event.inputs.ref_type }}"
