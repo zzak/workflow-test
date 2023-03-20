@@ -39,9 +39,12 @@ jobs:
 
     - name: publish
       run: |
-        ls workflow-test-upstream
+        mkdir -p ${{ github.event.inputs.ref_name }}
+        cp workflow-test-upstream/docs ${{ github.event.inputs.ref_name }}
+
         git config --global user.name "rails-bot"
         git config --global user.email "rails-bot@users.noreply.github.com"
-        git add workflow-test-upstream/docs
+
+        git add ${{ github.event.inputs.ref_name }}
         git commit -m "${{ github.event.inputs.ref_name }}"
         git push
