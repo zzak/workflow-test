@@ -32,4 +32,12 @@ jobs:
     - name: report
       working-directory: workflow-test-upstream
       run: |
-        git status
+        git remote show origin
+
+    - name: publish
+      run: |
+        git config --global user.name "rails-bot"
+        git config --global user.email "rails-bot@users.noreply.github.com"
+        git add workflow-test-upstream/docs
+        git commit -m "${{ github.events.inputs.ref_name }}"
+        git push
